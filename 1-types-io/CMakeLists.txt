@@ -1,0 +1,5 @@
+add_executable(circle circle.c)
+add_executable(sphere sphere.c)
+add_executable(OXYmol OXYmol.c)
+add_executable(admin admin.c)
+target_link_libraries(admin m)

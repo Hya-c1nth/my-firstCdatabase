@@ -23,25 +23,23 @@ int main(){
 
     while (chance > 0) {
       //let the player enter his/her number
-      printf("enter your guess between 1 and %d\n",high);
-
-
-      int guess;
+        printf("enter your guess between 1 and %d\n",high);
+        int guess;
       //store the guess number
       //compare it with the random number
       //imform the player of the result
-      scanf("%d",&guess);
+        scanf("%d",&guess);
 
       //loop:reapt until the player win or lose
-      if(guess == secret) {
-        printf("you win!\n");
-        break;
-      } else if(guess > secret) {
-        printf("guess > secret\n");
-      } else {
-        printf("guess < secret\n");
-      }
-    chance--;
+        if(guess == secret) {
+            printf("you win!\n");
+            break;
+        } else if(guess > secret) {
+            printf("guess > secret\n");
+        } else {
+            printf("guess < secret\n");
+        }
+        chance--;
     }
 
     return 0;
