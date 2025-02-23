@@ -1,0 +1,21 @@
+Solving a task by first solving its smaller subtasks.find the base case.
+两个过程：1.不断向下分解寻找子问题；2.把解不断向上传播的过程。
+thinking：1.What is a smaller task(the most important);2.How to solve the task given the solution to
+the smaller one;What is the smaller task.
+It will be a loooooooong wag to go to master RECURSION
+thinking like a computer.
+p(n)
+  p'(n-1)
+    p''(n-2)
+      ...
+程序运行时，计算机会分配内存空间（space）给程序，被分为了几块：栈、堆......
+程序一开始运行，即到达int main()时，就会给里面的参数分配其所需要的空间，被称为栈帧。
+程序运行到被调用函数那一行时，会跳转到该函数的定义位置，控制权转移到被调用函数，并分配一块栈帧给函数的参数，然后传值开始运行。
+该函数运行完时，会做3件事：1.把值return给调用函数的位置；2.把控制权归还给调用者；3.栈帧被销毁。
+例min.c：函数在第10行被调用，下一步会运行函数所在的第16行，运行到第18行后，下一步会准备运行第11行。
+全局变量(Global variables)、局部变量（Local variables）：从作用域的角度而言。
+静态变量(Static Variables)、自动变量(Automatic variables)：从变量生命周期而言。
+自动变量(Automatic Variables)：它的栈帧随着所在函数的栈帧产生和消亡。
+静态变量：他的生命周期是从程序刚一开始直到程序终止。如int numbers[NUM]
+stack(栈)：
+heap(堆)：

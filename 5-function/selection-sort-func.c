@@ -7,7 +7,10 @@
 #include <stdio.h>
 #define LEN 20
 int numbers[LEN] = {0};
-
+void SelectionSort(int arr[], int len);
+int GetMainIndex(const int arr[], int begin, int end);
+void swap(int left, int right);
+void PrintArray(const int arr[], int len);
 int main() {
   /*一、因为用户输入的位数是不定的，所以无法用for循环。并且scanf中的%d会忽略前导空白符（换行、空格、制表符都是空白符），
    *直到读取到非空白字符为止。所以在本代码运行时输入的回车会被“吞掉”，导致始终无法终止输入。
@@ -40,21 +43,43 @@ int main() {
   //int a = 5;
   //int b = a++; b 被赋值为 5，然后 a 递增为 6
   //selection sort
-  for (int i = 0; i < len; i++) {
-    //find the minimum value in number[i,len]
-    int min_index = i;
-    int min = numbers[i];
-    for (int j = i + 1; j < len; j++) {
-      if (numbers[j] < min) {
-        min = numbers[j];
-        min_index = j;
-      }
-    }
-    //swap numbersp[i] and numbers[min_index]
-    int temp = numbers[min_index];
-    numbers[min_index] = numbers[i];
-    numbers[i] = temp;
-  }
 
   return 0;
+}
+int GetMainIndex(const int arr[], int begin, int end){//设置形参的时候不是一定要设置长度为参数，比如这个设置的就是开始和结束的下标
+  int min_index = begin;
+  int min = arr[begin];
+  for (int j = begin + 1; j < end; j++) {
+    if (arr[j] < min) {
+      min = arr[j];
+      min_index = j;
+    }
+  }
+  return min_index;
+}
+//既然是传递值，那为什么这个函数就可以正常使用呢？
+//因为传值机制不变，但原始数组的地址被copy给了形参，所以可以通过地址找到数组，然后通过下标找到数组的元素，并进行修改。
+void SelectionSort(int arr[], int len) {
+  for (int i = 0; i < len; i++) {
+    int min_index = GetMainIndex(arr, i, len);
+    //swap numbersp[i] and numbers[min_index]
+    int temp = arr[min_index];
+    arr[min_index] = arr[i];
+    arr[i] = temp;
+    swap(arr[min_index], arr[i]);
+  }
+}
+//会出现没有成功交换的情况，因为实参传递给形参的时候出现了问题。c语言中，函数的参数是传递的是值，而不是引用，即直接把实参的值
+//复制给形参，所以形参的改变不会影响到实参。
+//所以要想实现交换，要把实参的地址传递给形参，即引用传递。
+//void swap(int left, int right) {
+//  int temp = left;
+//  left = right;
+//  right = temp;
+//}
+void PrintArray(const int arr[], int len) {
+  for (int i = 0; i < len; i++) {
+    printf("%d ", arr[i]);
+  }
+  printf("\n");
 }
